@@ -18,11 +18,7 @@ def readScoreDB():
 def recordScoreDB(scdb, name, score, difficulty, operator):
     if name in scdb:
         if operator not in scdb[name]:
-            scdb[name] = {operator : [score]}
-            if difficulty not in scdb[name][operator]:
-                scdb[name][operator] = {difficulty : [score]}
-            else:
-                scdb[name][operator][difficulty].append(score)
+            scdb[name][operator] = {difficulty : [score]}
         elif operator in scdb[name]:
             if difficulty not in scdb[name][operator]:
                 scdb[name][operator][difficulty] = [score]
@@ -30,7 +26,7 @@ def recordScoreDB(scdb, name, score, difficulty, operator):
                 scdb[name][operator][difficulty].append(score)
     elif name not in scdb:
         scdb[name] = {operator : {difficulty : [score]}}
-# scdb = {"Song" : {"+" : {"Easy Mode": [100.0, 60.0], "Hard Mode" : [100.0, 20.0]}}}
+# scdb = {"Song" : {"+" : {"Easy Mode": [100.0, 60.0], "Hard Mode" : [100.0, 20.0]}, "-" : {"Easy Mode": [100, 30], "Hard Mode" : [300, 20]}}}
     
 
 def writeScoreDB(scdb):
